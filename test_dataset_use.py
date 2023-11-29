@@ -5,10 +5,7 @@ import open3d as o3d
 import json
 
 def test_all_datasets():
-    with open("lanverso_industrial_dataset_helper/data/industrial_dataset_list.json") as json_file:
-        file_index = json.load(json_file)
-
-    for scene in file_index:
+    for scene in industrial_dataset.scene_list():
         dataset = industrial_dataset(scene=scene)
         for pcd_path in dataset.paths:
             pcd = o3d.io.read_point_cloud(pcd_path)

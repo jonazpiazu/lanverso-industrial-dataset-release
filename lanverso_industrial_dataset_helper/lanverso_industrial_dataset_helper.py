@@ -83,6 +83,12 @@ class IndustrialDataset:
 
         self.paths = natsorted(self.paths)
 
+    @staticmethod
+    def scene_list() -> list:
+        with open(IndustrialDatasetData.industrial_dataset_list_file) as json_file:
+            file_index = json.load(json_file)
+        return list(file_index.keys())
+
     def download_file(self, url, destination_file):
         response = requests.get(url)
         if response.status_code == 200:
