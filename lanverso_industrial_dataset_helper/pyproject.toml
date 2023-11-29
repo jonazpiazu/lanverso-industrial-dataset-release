@@ -17,6 +17,3 @@ dependencies = [
 
 [project.urls]
 Home = "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/"
-
-[project.scripts]
-test_dataset_use = "test_dataset_use:main"
