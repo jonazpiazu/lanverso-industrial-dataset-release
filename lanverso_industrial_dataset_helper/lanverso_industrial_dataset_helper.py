@@ -1,7 +1,5 @@
 """Simple wrapper class to download and extract the industrial dataset."""
 
-__version__ = "0.1"
-
 import logging
 import os
 from dataclasses import dataclass
@@ -12,6 +10,22 @@ import requests
 from natsort import natsorted
 import json
 import zipfile
+
+from dataclasses import dataclass
+
+
+class classproperty(property):
+    def __get__(self, cls, owner):
+        return classmethod(self.fget).__get__(None, owner)()
+
+
+@dataclass
+class IndustrialDatasetData:
+    data_dir: Path = Path(__file__).parents[0] / "data"
+
+    @classproperty
+    def industrial_dataset_list_file(cls) -> Path:
+        return cls.data_dir / "industrial_dataset_list.json"
 
 
 @dataclass(frozen=False)
@@ -24,7 +38,7 @@ class IndustrialDataset:
             level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
         )
 
-        with open("industrial_dataset_list.json") as json_file:
+        with open(IndustrialDatasetData.industrial_dataset_list_file) as json_file:
             self.file_index = json.load(json_file)
         if not self.file_index.get(self.scene):
             logging.error(f"Dataset {self.scene} does not exist.")

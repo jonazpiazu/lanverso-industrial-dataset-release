@@ -17,3 +17,6 @@ dependencies = [
 
 [project.urls]
 Home = "https://github.com/jonazpiazu/lanverso-industrial-dataset-release/"
+
+[tool.flit.external-data]
+directory = "lanverso_industrial_dataset_helper/data"

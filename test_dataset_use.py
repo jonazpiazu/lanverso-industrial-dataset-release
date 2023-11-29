@@ -1,11 +1,11 @@
 """Minimal example of how to use the IndustrialDataset class to load and interact with the dataset."""
 
-from lanverso_industrial_dataset_helper import IndustrialDataset as industrial_dataset
+from lanverso_industrial_dataset_helper.lanverso_industrial_dataset_helper import IndustrialDataset as industrial_dataset
 import open3d as o3d
 import json
 
 def test_all_datasets():
-    with open("industrial_dataset_list.json") as json_file:
+    with open("lanverso_industrial_dataset_helper/data/industrial_dataset_list.json") as json_file:
         file_index = json.load(json_file)
 
     for scene in file_index:
